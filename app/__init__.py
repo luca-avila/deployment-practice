@@ -5,7 +5,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import lifespan, init_db, get_db
 from app.config import settings
-from app.models.counter import Counter
+from app.model import Counter
 
 def create_app() -> FastAPI:
 
