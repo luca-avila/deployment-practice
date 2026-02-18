@@ -4,7 +4,7 @@ const getCounter = async () => {
         throw new Error('Network response was not ok');
     }
     const data = await response.json();
-    return data.counter;
+    return data;
 }
 
 const incrementCounter = async () => {
@@ -15,7 +15,7 @@ const incrementCounter = async () => {
         throw new Error('Network response was not ok');
     }
     const data = await response.json();
-    return data.counter;
+    return data;
 }
 
 const decrementCounter = async () => {
@@ -26,7 +26,7 @@ const decrementCounter = async () => {
         throw new Error('Network response was not ok');
     }
     const data = await response.json();
-    return data.counter;
+    return data;
 }
 
 export { getCounter, incrementCounter, decrementCounter };
