@@ -33,6 +33,12 @@ services:
     command: uvicorn main:app --host 0.0.0.0 --port 8000
     restart: unless-stopped
 
+  frontend:
+    build: ./frontend
+    container_name: deployment_practice_frontend
+    volumes:
+      - frontend_dist:/var/www/frontend
+
   nginx:
     image: nginx:alpine
     container_name: deployment_practice_nginx
@@ -43,9 +49,10 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - ./certbot/www:/var/www/certbot:ro
       - ./certbot/conf:/etc/letsencrypt:ro
-      - ./frontend/dist:/var/www/frontend:ro
+      - frontend_dist:/var/www/frontend:ro
     depends_on:
       - backend
+      - frontend
     restart: unless-stopped
 
   certbot:
@@ -57,3 +64,4 @@ services:
 
 volumes:
   postgres_data:
+  frontend_dist:
